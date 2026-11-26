@@ -33,6 +33,15 @@ from .frame_data import FrameData
 
 class Module(ABC):
     MODULE_NAME: ClassVar[str]
+    running_status: bool = True
+
+    @abstractmethod
+    def enable_module(self) -> None:
+        self.running_status = True
+
+    @abstractmethod
+    def disable_module(self) -> None:
+        self.running_status = False
 
     @abstractmethod
     def _frame_processing(self, frame_data: FrameData) -> None:
